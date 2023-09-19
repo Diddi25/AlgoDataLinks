@@ -3,13 +3,13 @@ class LinkedList {
     LinkedList (int n) { //initierar en lista med längd n
         Cell next = null;
         for (int i = 0; i < n; i++) {
-            next = new Cell(i, next); //initierar null objekt i varje cell property
+            next = new Cell(i, next); //initierar varje cell med ett värde upp till n,
         }
-        first = next;
+        this.first = next;
     }
 
-    public void add(Cell newFirst) {
-        newFirst.nextCell = first;
+    public void addAtFirst(Cell newFirst) {
+        newFirst.nextCell = this.first;
     }
     public int length() {
         int counter = 0;
@@ -22,7 +22,7 @@ class LinkedList {
 
     public boolean find(Cell wantedCell) {
         while (first.nextCell != null) {
-            if(first == wantedCell) {
+            if (first == wantedCell) {
                 return true;
             }
             first = first.nextCell;
@@ -31,7 +31,7 @@ class LinkedList {
     }
 
     public void remove(Cell targetCell) {
-        if(find(targetCell)) {
+        if (find(targetCell)) {
             while (first.nextCell != targetCell) {
                 first = first.nextCell;
             }
@@ -40,12 +40,13 @@ class LinkedList {
         }
     }
 
-    public void append(LinkedList b) {
+    public void append(LinkedList anotherList) {
         Cell next = this.first;
         Cell previous = null;
         while (next.nextCell != null) {
             previous = next;
             next = next.nextCell;
         }
+        next.nextCell = anotherList.first;
     }
 }

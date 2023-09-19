@@ -1,8 +1,8 @@
 public class Cell {
-    int first;
+    int value;
     Cell nextCell;
     Cell (int value, Cell nextCell) {
-        first = value;
-        nextCell = nextCell;
+        this.value = value;
+        this.nextCell = nextCell;
     }
 }
