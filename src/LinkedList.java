@@ -8,8 +8,8 @@ class LinkedList {
         this.first = next;
     }
 
-    public void addAtFirst(Cell newFirst) {
-        newFirst.nextCell = this.first;
+    public void addAtFirst(int item) {
+        Cell newFirst = new Cell(item, this.first);
     }
     public int length() {
         int counter = 0;
@@ -20,9 +20,9 @@ class LinkedList {
         return counter;
     }
 
-    public boolean find(Cell wantedCell) {
+    public boolean find(int item) {
         while (first.nextCell != null) {
-            if (first == wantedCell) {
+            if (first.value == item) {
                 return true;
             }
             first = first.nextCell;
@@ -30,13 +30,13 @@ class LinkedList {
         return false;
     }
 
-    public void remove(Cell targetCell) {
-        if (find(targetCell)) {
-            while (first.nextCell != targetCell) {
+    public void remove(int item) {
+        if (find(item)) {
+            while (first.value != item) {
                 first = first.nextCell;
             }
             first = first.nextCell.nextCell;
-            targetCell.nextCell = null;
+            //first.nextCell = null; //om detta ska va med ska first.nextCell sparas först i egen cell
         }
     }
 
