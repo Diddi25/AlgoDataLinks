@@ -1,29 +1,19 @@
 class LinkedList {
     Cell first;
-
-    LinkedList(int n) {
-        Cell last = null;
-        for (int i = 0; i<n; i++) {
-            last = new Cell(i, last);
+    LinkedList (int n) {
+        Cell next = null;
+        for (int i = 0; i < n; i++) {
+            next = new Cell(i, next);
         }
-        first = last;
-    }
-
-    private class Cell {
-        int head;
-        Cell tail;
-        Cell(int value, Cell t1) {
-            head = value;
-            tail = t1;
-        }
+        first = next;
     }
 
     public void append(LinkedList b) {
         Cell next = this.first;
         Cell previous = null;
-        while (next.tail != null) {
+        while (next.nextCell != null) {
             previous = next;
-            next = next.tail;
+            next = next.nextCell;
         }
     }
 }
