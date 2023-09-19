@@ -9,7 +9,7 @@ class LinkedList {
     }
 
     public void addAtFirst(int item) {
-        Cell newFirst = new Cell(item, this.first);
+        this.first = new Cell(item, this.first);
     }
     public int length() {
         int counter = 0;
@@ -19,7 +19,6 @@ class LinkedList {
         }
         return counter;
     }
-
     public boolean find(int item) {
         while (first.nextCell != null) {
             if (first.value == item) {
@@ -29,7 +28,6 @@ class LinkedList {
         }
         return false;
     }
-
     public void remove(int item) {
         if (find(item)) {
             while (first.value != item) {
@@ -39,7 +37,6 @@ class LinkedList {
             //first.nextCell = null; //om detta ska va med ska first.nextCell sparas först i egen cell
         }
     }
-
     public void append(LinkedList anotherList) {
         Cell next = this.first;
         Cell previous = null;

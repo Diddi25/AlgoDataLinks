@@ -1,6 +1,6 @@
 public class Benchmark {
     public static void main(String[] args) {
-        System.out.printf("#%4s%12s%11s%7s%8s\n", "n", "selection", "insertion", "merge", "quick\n");
+        System.out.printf("#%4s%12s%11s%7s%8s\n", "n", "A variates", "B variates", "merge", "quick\n");
         benchmark();
     }
     private static final int tries = 1000;
@@ -10,9 +10,6 @@ public class Benchmark {
         int[] sizesForA = {100, 250, 500, 1000, 2500, 4000, 5500};
         int[] sizesForB = {100, 250, 500, 1000, 2500, 4000, 5500};
 
-        printResult(sizesForA, new LinkedList(0), new LinkedList(5));
-        printResult(sizesForB, new LinkedList(0), new LinkedList(5));
-
         for (int n: sizesForA) {
             LinkedList A = new LinkedList(n);
             LinkedList B = new LinkedList(5);
@@ -21,6 +18,8 @@ public class Benchmark {
             float timeForFirstTask = tryThis1000Times(A, B);
             System.out.printf("%12.0f", timeForFirstTask);
         }
+        restoreMinAndMax();
+        System.out.println(" ");
         for (int n: sizesForB) {
             LinkedList A = new LinkedList(5);
             LinkedList B = new LinkedList(n);
@@ -30,7 +29,6 @@ public class Benchmark {
             System.out.printf("%12.0f", timeForFirstTask);
         }
     }
-
     private static float tryThis1000Times(LinkedList firstList, LinkedList secondList) {
         for (int i = 0; i < tries; i++) {
             long t0 = System.nanoTime();
@@ -46,17 +44,7 @@ public class Benchmark {
         }
         return (max + min) / 2;
     }
-    private static void printResult(int[] variedSizes, LinkedList firstList, LinkedList secondList){
-        for (int n: variedSizes) {
-            LinkedList A = new LinkedList(n);
-            LinkedList B = new LinkedList(5);
-
-            System.out.printf("%5d", n);
-            float timeForFirstTask = tryThis1000Times(A, B);
-            System.out.printf("%12.0f", timeForFirstTask);
-        }
-    }
-    private static void restoreMin() {
+    private static void restoreMinAndMax() {
         min = Float.POSITIVE_INFINITY;
         max = -1;
     }
