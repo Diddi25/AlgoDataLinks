@@ -33,7 +33,6 @@ class LinkedList {
                 first = first.nextCell;
             }
             first = first.nextCell.nextCell;
-            //first.nextCell = null; //om detta ska va med ska first.nextCell sparas först i egen cell
         }
     }
     public void append(LinkedList anotherList) {

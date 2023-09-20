@@ -1,6 +1,6 @@
 public class Benchmark {
     public static void main(String[] args) {
-        System.out.printf("#%4s%12s%11s%7s%8s\n", "n", "A variates", "B variates", "merge", "quick\n");
+        System.out.printf("#%4s%12s%12s%12s%12s\n", "n", "A list vary", "B list vary", "A array vary", "B array vary\n");
         benchmark();
     }
     private static final int tries = 1000;
@@ -36,6 +36,8 @@ public class Benchmark {
             DynamicArray A = new DynamicArray(n);
             printResultForArrays(n, A, B);
         }
+        restoreMinAndMax();
+        System.out.println(" ");
         for (int n: differentSizes) {
             DynamicArray A = new DynamicArray(n);
             printResultForArrays(n, B, A);
