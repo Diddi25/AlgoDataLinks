@@ -4,43 +4,66 @@ public class Benchmark {
         benchmark();
     }
     private static final int tries = 1000;
+    private static final int fixedSize = 5;
     private static float min = Float.POSITIVE_INFINITY;
     private static float max = -1;
     public static void benchmark() {
-        int[] sizesForA = {100, 250, 500, 1000, 2500, 4000, 5500};
-        int[] sizesForB = {100, 250, 500, 1000, 2500, 4000, 5500};
+        int[] differentSizes = {100, 250, 500, 1000, 2500, 4000, 5500};
 
-        for (int n: sizesForA) {
+        for (int n: differentSizes) {
             LinkedList A = new LinkedList(n);
-            LinkedList B = new LinkedList(5);
+            LinkedList B = new LinkedList(fixedSize);
 
             System.out.printf("%5d", n);
-            float timeForFirstTask = tryThis1000Times(A, B);
+            float timeForFirstTask = tryThis1000TimesForList(A, B);
             System.out.printf("%12.0f", timeForFirstTask);
         }
         restoreMinAndMax();
         System.out.println(" ");
-        for (int n: sizesForB) {
-            LinkedList A = new LinkedList(5);
+        for (int n: differentSizes) {
+            LinkedList A = new LinkedList(fixedSize);
             LinkedList B = new LinkedList(n);
 
             System.out.printf("%5d", n);
-            float timeForFirstTask = tryThis1000Times(A, B);
+            float timeForFirstTask = tryThis1000TimesForList(A, B);
             System.out.printf("%12.0f", timeForFirstTask);
         }
-        for (int n: sizesForA) {
-            LinkedList A = new LinkedList(5);
-            LinkedList B = new LinkedList(n);
+        for (int n: differentSizes) {
+            DynamicArray A = new DynamicArray(n);
+            DynamicArray B = new DynamicArray(fixedSize);
 
             System.out.printf("%5d", n);
-            float timeForFirstTask = tryThis1000Times(A, B);
+            float timeForFirstTask = tryThis1000TimesForArrays(A, B);
+            System.out.printf("%12.0f", timeForFirstTask);
+        }
+        for (int n: differentSizes) {
+            DynamicArray A = new DynamicArray(fixedSize);
+            DynamicArray B = new DynamicArray(n);
+
+            System.out.printf("%5d", n);
+            float timeForFirstTask = tryThis1000TimesForArrays(A, B);
             System.out.printf("%12.0f", timeForFirstTask);
         }
     }
-    private static float tryThis1000Times(LinkedList firstList, LinkedList secondList) {
+    private static float tryThis1000TimesForList(LinkedList firstList, LinkedList secondList) {
         for (int i = 0; i < tries; i++) {
             long t0 = System.nanoTime();
             firstList.append(secondList);
+            long t1 = System.nanoTime();
+            long t = t1 - t0;
+            if(t < min) {
+                min = t;
+            }
+            if(t > max) {
+                max = t;
+            }
+        }
+        return (max + min) / 2;
+    }
+    private static float tryThis1000TimesForArrays(DynamicArray firstArray, DynamicArray secondArray) {
+        for (int i = 0; i < tries; i++) {
+            long t0 = System.nanoTime();
+            firstArray.append(secondArray);
             long t1 = System.nanoTime();
             long t = t1 - t0;
             if(t < min) {
