@@ -11,28 +11,31 @@ class LinkedList {
         this.first = new Cell(item, this.first);
     }
     public int length() {
+        Cell next = this.first;
         int counter = 0;
-        while (first.nextCell != null) {
+        while (next != null) {
             counter++;
-            first = first.nextCell;
+            next = next.nextCell;
         }
         return counter;
     }
     public boolean find(int item) {
-        while (first.nextCell != null) {
-            if (first.value == item) {
+        Cell next = this.first;
+        while (next.nextCell != null) {
+            if (next.value == item) {
                 return true;
             }
-            first = first.nextCell;
+            next = next.nextCell;
         }
         return false;
     }
     public void remove(int item) {
         if (find(item)) {
-            while (first.value != item) {
-                first = first.nextCell;
+            Cell next = this.first;
+            while (next.value != item) {
+                next = next.nextCell;
             }
-            first = first.nextCell.nextCell;
+            next = next.nextCell.nextCell;
         }
     }
     public void append(LinkedList anotherList) {
