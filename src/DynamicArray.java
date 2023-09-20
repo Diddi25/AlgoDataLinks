@@ -1,8 +1,12 @@
 public class DynamicArray {
     public int size;
-    public int[] array = new int[size];
+    public int[] array;
     DynamicArray(int size) {
         this.size = size;
+        this.array = new int[this.size];
+        for (int i = 0; i < size; i++) {
+            array[i] = i;
+        }
     }
     public int[] append(DynamicArray anotherArray) {
         int[] newArray = new int[this.size + anotherArray.size];

@@ -7,7 +7,6 @@ class LinkedList {
         }
         this.first = next;
     }
-
     public void addAtFirst(int item) {
         this.first = new Cell(item, this.first);
     }

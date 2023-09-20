@@ -28,6 +28,14 @@ public class Benchmark {
             float timeForFirstTask = tryThis1000Times(A, B);
             System.out.printf("%12.0f", timeForFirstTask);
         }
+        for (int n: sizesForA) {
+            LinkedList A = new LinkedList(5);
+            LinkedList B = new LinkedList(n);
+
+            System.out.printf("%5d", n);
+            float timeForFirstTask = tryThis1000Times(A, B);
+            System.out.printf("%12.0f", timeForFirstTask);
+        }
     }
     private static float tryThis1000Times(LinkedList firstList, LinkedList secondList) {
         for (int i = 0; i < tries; i++) {
