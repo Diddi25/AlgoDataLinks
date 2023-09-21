@@ -10,7 +10,6 @@ class LinkedList {
     public void addAtFirst(int item) {
         this.first = new Cell(item, this.first);
     }
-
     public int length() {
         Cell next = this.first;
         int counter = 0;
