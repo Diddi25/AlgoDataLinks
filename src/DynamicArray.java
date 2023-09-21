@@ -8,7 +8,7 @@ public class DynamicArray {
             array[i] = i;
         }
     }
-    public int[] append(DynamicArray anotherArray) {
+    public void append(DynamicArray anotherArray) {
         int[] newArray = new int[this.size + anotherArray.size];
         for (int i = 0; i < this.size; i++) {
             newArray[i] = this.array[i];
@@ -16,8 +16,8 @@ public class DynamicArray {
         for (int i = this.size; i < newArray.length; i++) {
             newArray[i] = anotherArray.array[i - this.size];
         }
-        //this.array = newArray;
-        return newArray;
+        this.array = newArray;
+        this.size = newArray.length;
     }
 
 }

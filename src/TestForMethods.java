@@ -1,11 +1,28 @@
-public class TestsForLinkedList {
+public class TestForMethods {
     public static void main(String[] args) {
         //test för append()
 
+        DynamicArray A = new DynamicArray(1);
+        DynamicArray B = new DynamicArray(1);
+
+        for (int i = 0; i < A.size; i++) {
+            System.out.print(A.array[i] + " ");
+        }
+        System.out.println(" ");
+        for (int i = 0; i < B.size; i++) {
+            System.out.print(B.array[i] + " ");
+        }
+        System.out.println(" ");
+
+        A.append(B);
+        for (int i = 0; i < A.size; i++) {
+            System.out.print(A.array[i] + " ");
+        }
+
+    }
+    private static void testForAppend() {
         LinkedList A = new LinkedList(0);
-
         LinkedList B = new LinkedList(0);
-
         A.append(B);
         System.out.println(A.length());
     }
