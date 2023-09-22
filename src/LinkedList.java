@@ -44,13 +44,11 @@ class LinkedList {
     }
     public void append(LinkedList anotherList) {
         Cell next = this.first;
-        Cell previous = null;
         if (this.length() == 0) {
             this.first = anotherList.first;
             return;
         }
         while (next.nextCell != null) {
-            previous = next;
             next = next.nextCell;
         }
         next.nextCell = anotherList.first;
